@@ -1,0 +1,14 @@
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp2.2\LojaVirtual.deps.json
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp2.2\LojaVirtual.runtimeconfig.json
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp2.2\LojaVirtual.runtimeconfig.dev.json
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp2.2\LojaVirtual.dll
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp2.2\LojaVirtual.pdb
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CoreCompileInputs.cache
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorAssemblyInfo.cache
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorAssemblyInfo.cs
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.AssemblyInfoInputs.cache
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.AssemblyInfo.cs
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorTargetAssemblyInfo.cache
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.dll
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.pdb
