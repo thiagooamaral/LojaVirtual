@@ -6,7 +6,7 @@ namespace LojaVirtual.Controllers
     public class ProdutoController : Controller
     {
         //Toda controller deve herdar da classe Controller
-        //Todo método deve retornar um ActionResult: ActionResult ou IActionResult
+        //Todos métodos devem retornar um ActionResult: ActionResult ou IActionResult
 
         public ActionResult Visualizar()
         {
