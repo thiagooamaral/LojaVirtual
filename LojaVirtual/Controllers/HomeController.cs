@@ -1,4 +1,5 @@
-﻿using LojaVirtual.Libraries.Email;
+﻿using LojaVirtual.Database;
+using LojaVirtual.Libraries.Email;
 using LojaVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,9 +11,40 @@ namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
+        private LojaVirtualContext _banco;
+
+        public HomeController(LojaVirtualContext banco)
+        {
+            _banco = banco;
+        }
+
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index([FromForm] NewsletterEmail newsletter)
+        {
+            //Essa é uma forma mais simples de receber os dados do formulário
+
+            if (ModelState.IsValid)
+            {
+                _banco.NewsletterEmails.Add(newsletter);
+                _banco.SaveChanges();
+
+                //Neste caso, estou utilizando o método TempData pois estou redirecionando a página. Senão, poderia utilizar o View ou ViewBag
+                //O TempData armazena as informações até elas serem utilizadas, depois disso as apaga! Para mante-lás, utilize TempData.Keep
+
+                TempData["MSG_S"] = "E-mail cadastrado! Agora você vai receber promoções especiais no seu e-mail! Fique atento as novidades!";
+
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Contato()

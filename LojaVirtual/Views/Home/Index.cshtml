@@ -1,4 +1,4 @@
-﻿
+﻿@model LojaVirtual.Models.NewsletterEmail
 @{
     ViewData["Title"] = "Index";
 }
@@ -157,9 +157,34 @@
 
 </main>
 
-<form role="form" method="post" action="/Home/ContatoAcao">
-    <div class="container">
+@{
+    //Razor - Motor Template do ASP.NET
+    //HTML Helper -Interface que proporciona gerar código HTML por meio do C#, isso ajuda na manipulação de informações entre HTML e Tecnologia ASP.NET
+    //No exemplo abaixo, mesmo que a ordem ou o endereço tenha sido alterado, o action link continuará funcionando, diferente do href
+}
+
+@*<a href="/home/index">Texto</a>
+    @Html.ActionLink("Texto", "Visualizar", "Produto")*@
+
+@*@using (Html.BeginForm("index", "home", FormMethod.Post))*@
+
+@using (Html.BeginForm(null, null, null, FormMethod.Post, false, new { @action = Url.Action("index", "home") + "#formulario" }))
+{
+    <div class="container" id="formulario">
+
         <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                @if (TempData["MSG_S"] != null)
+                {
+                    <p class="alert alert-success">@TempData["MSG_S"]</p>
+                }
+            </div>
+        </div>
+
+        <div class="row">
+
+            @*@Html.ValidationSummary()*@
+            @*Esse é o jeito que exibe todas as mensagens*@
 
             <div class="col-sm-6 offset-sm-2">
                 <div class="form-group">
@@ -168,16 +193,18 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                         </div>
-                        <input type="text" id="nome" class="form-control" name="nome" placeholder="" required="" value="" />
+                        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
+                    <span style="color: red;">@Html.ValidationMessageFor(m => m.Email)</span>
+                    @*Esse é o jeito que exibe apenas as mensagens de um campo*@
                 </div>
             </div>
             <div class="col-sm-2">
                 <br />
-                <button class="subscribe btn btn-primary btn-block" type="submit"> Enviar </button>
+                <button class="subscribe btn btn-primary btn-block" type="submit" style="margin-top: 7px;"> Cadastrar-se </button>
             </div>
 
         </div>
     </div>
-</form>
+}
 
