@@ -30,3 +30,4 @@ C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual
 C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.pdb
 C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CopyComplete
 C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
