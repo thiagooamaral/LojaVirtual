@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using LojaVirtual.Database;
 using LojaVirtual.Repositories;
 using LojaVirtual.Repositories.Contracts;
+using LojaVirtual.Libraries.Sessao;
+using LojaVirtual.Libraries.Login;
 
 namespace LojaVirtual
 {
@@ -23,6 +25,9 @@ namespace LojaVirtual
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Propriedade utilizada na classe Sessão
+            services.AddHttpContextAccessor();
+
             //Padrão Repository
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<INewsletterRepository, NewsletterRepository>();
@@ -34,6 +39,18 @@ namespace LojaVirtual
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //Configuração de sessão (Deve ser antes do AddMvc)
+            //Posso utilizar esta opção também: services.AddDistributedMemoryCache();
+            //Guardar os dados na memória
+            services.AddMemoryCache();
+            services.AddSession(options =>
+            {
+                //options.IdleTimeout : Configura o tempo que a sessão vai expirar, por default o tempo é 20 min (Dosar corretamente este tempo)
+            });
+
+            //Fiz isso para poder injetar a classe sessão/logincliente em qualquer lugar
+            services.AddScoped<Sessao>();
+            services.AddScoped<LoginCliente>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -58,6 +75,9 @@ namespace LojaVirtual
             app.UseHttpsRedirection();
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
+            //Configuração da sessão
+            app.UseSession();
             
             app.UseMvc(routes =>
             {
