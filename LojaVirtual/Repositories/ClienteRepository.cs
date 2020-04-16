@@ -17,7 +17,8 @@ namespace LojaVirtual.Repositories
 
         public void Atualizar(Cliente cliente)
         {
-            throw new System.NotImplementedException();
+            _banco.Update(cliente);
+            _banco.SaveChanges();
         }
 
         public void Cadastrar(Cliente cliente)

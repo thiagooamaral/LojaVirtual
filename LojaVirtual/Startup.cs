@@ -31,6 +31,7 @@ namespace LojaVirtual
             //Padrão Repository
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<INewsletterRepository, NewsletterRepository>();
+            services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -51,6 +52,7 @@ namespace LojaVirtual
             //Fiz isso para poder injetar a classe sessão/logincliente em qualquer lugar
             services.AddScoped<Sessao>();
             services.AddScoped<LoginCliente>();
+            services.AddScoped<LoginColaborador>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -78,9 +80,17 @@ namespace LojaVirtual
 
             //Configuração da sessão
             app.UseSession();
-            
+
             app.UseMvc(routes =>
             {
+                //Posso deixar as duas rotas, uma não interfere a outra.
+                //Mas a rota da área deve vir em primeiro
+                //Posso deixar também, somente a rota da área
+
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  );
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
