@@ -35,3 +35,7 @@ C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas
 C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Home\RecuperarSenha.g.cshtml.cs
 C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Home\CadastrarNovaSenha.g.cshtml.cs
 C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\_ViewImports.g.cshtml.cs
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Shared\_Layout.g.cshtml.cs
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\_ViewStart.g.cshtml.cs
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Home\Painel.g.cshtml.cs
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Categoria\Index.g.cshtml.cs
