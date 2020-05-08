@@ -1,11 +1,15 @@
-﻿using LojaVirtual.Models;
+﻿using LojaVirtual.Libraries.Filtro;
+using LojaVirtual.Libraries.Lang;
+using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
-    //[ColaboradorAutorizacao]
+    [ColaboradorAutorizacao]
     public class CategoriaController : Controller
     {
         private ICategoriaRepository _categoriaRepository;
@@ -24,33 +28,58 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [HttpGet]
         public IActionResult Cadastrar()
         {
+            //Select na view
+            ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
             return View();
         }
 
         [HttpPost]
         public IActionResult Cadastrar([FromForm] Categoria categoria)
         {
-            //TODO: Implementar
+            if (ModelState.IsValid)
+            {
+                _categoriaRepository.Cadastrar(categoria);
+                TempData["MSG_S"] = Mensagem.MSG_S001;
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
             return View();
         }
 
         [HttpGet]
-        public IActionResult Atualizar()
+        public IActionResult Atualizar(int id)
         {
-            return View();
+            var categoria = _categoriaRepository.ObterCategoria(id);
+
+            //Inseri a clausula Where para retirar a opção de selecionar o próprio item como pai (Ex: Notebook é pai de Notebook)
+            ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Where(a => a.Id != id).Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
+            return View(categoria);
         }
 
         [HttpPost]
-        public IActionResult Atualizar([FromForm] Categoria categoria)
+        public IActionResult Atualizar([FromForm] Categoria categoria, int id)
         {
-            //TODO: Implementar
+            if (ModelState.IsValid)
+            {
+                _categoriaRepository.Atualizar(categoria);
+                TempData["MSG_S"] = Mensagem.MSG_S001;
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Where(a => a.Id != id).Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
             return View();
         }
 
         [HttpGet]
         public IActionResult Excluir(int id)
         {
-            return View();
+            _categoriaRepository.Excluir(id);
+            TempData["MSG_S"] = Mensagem.MSG_S002;
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

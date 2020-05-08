@@ -1,18 +1,22 @@
-﻿using LojaVirtual.Database;
+﻿using System.Collections.Generic;
+using LojaVirtual.Database;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using X.PagedList;
 
 namespace LojaVirtual.Repositories
 {
     public class CategoriaRepository : ICategoriaRepository
     {
-        const int _registroPorPagina = 10;
-        LojaVirtualContext _banco;
+        private LojaVirtualContext _banco;
+        private IConfiguration _configuration;
 
-        public CategoriaRepository(LojaVirtualContext banco)
+        public CategoriaRepository(LojaVirtualContext banco, IConfiguration configuration)
         {
             _banco = banco;
+            _configuration = configuration;
         }
 
         public void Atualizar(Categoria categoria)
@@ -42,8 +46,16 @@ namespace LojaVirtual.Repositories
         public IPagedList<Categoria> ObterTodasCategorias(int? pagina)
         {
             //A paginação foi feita no repositório para não trazer todos os registros e depois realizar o filtro, mas sim já trazer filtrado
+            //Include(a => a.CategoriaPai): Foi para retornar o valor da categoria pai
+            int RegistroPorPagina = _configuration.GetValue<int>("RegistroPorPagina");
             int NumeroPagina = pagina ?? 1;
-            return _banco.Categorias.ToPagedList<Categoria>(NumeroPagina, _registroPorPagina);
+
+            return _banco.Categorias.Include(a => a.CategoriaPai).ToPagedList<Categoria>(NumeroPagina, RegistroPorPagina);
+        }
+
+        public IEnumerable<Categoria> ObterTodasCategorias()
+        {
+            return _banco.Categorias;
         }
     }
 }

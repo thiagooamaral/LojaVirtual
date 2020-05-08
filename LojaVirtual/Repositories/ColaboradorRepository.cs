@@ -1,23 +1,38 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
+using X.PagedList;
 
 namespace LojaVirtual.Repositories
 {
     public class ColaboradorRepository : IColaboradorRepository
     {
         private LojaVirtualContext _banco;
+        private IConfiguration _configuration;
 
-        public ColaboradorRepository(LojaVirtualContext banco)
+        public ColaboradorRepository(LojaVirtualContext banco, IConfiguration configuration)
         {
             _banco = banco;
+            _configuration = configuration;
         }
 
         public void Atualizar(Colaborador colaborador)
         {
             _banco.Update(colaborador);
+            _banco.Entry(colaborador).Property(a => a.Senha).IsModified = false; //Comando para não atualizar a senha
+            _banco.SaveChanges();
+        }
+
+        public void AtualizarSenha(Colaborador colaborador)
+        {
+            _banco.Update(colaborador);
+            _banco.Entry(colaborador).Property(a => a.Nome).IsModified = false;
+            _banco.Entry(colaborador).Property(a => a.Email).IsModified = false;
+            _banco.Entry(colaborador).Property(a => a.Tipo).IsModified = false;
             _banco.SaveChanges();
         }
 
@@ -45,9 +60,19 @@ namespace LojaVirtual.Repositories
             return _banco.Colaboradores.Find(Id);
         }
 
-        public IEnumerable<Colaborador> ObterTodosColaboradores()
+        public List<Colaborador> ObterColaboradorPorEmail(string email)
         {
-            return _banco.Colaboradores.ToList();
+            //AsNoTracking: Foi utilizado para corrigir um erro.
+            //Com isso, o entity não acompanha mais os resultados desta lista
+            return _banco.Colaboradores.Where(a => a.Email == email).AsNoTracking().ToList();
+        }
+
+        public IPagedList<Colaborador> ObterTodosColaboradores(int? pagina)
+        {
+            int RegistroPorPagina = _configuration.GetValue<int>("RegistroPorPagina");
+            int NumeroPagina = pagina ?? 1;
+
+            return _banco.Colaboradores.Where(a => a.Tipo != "G").ToPagedList<Colaborador>(NumeroPagina, RegistroPorPagina);
         }
     }
 }

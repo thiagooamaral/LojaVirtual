@@ -39,3 +39,8 @@ C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas
 C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\_ViewStart.g.cshtml.cs
 C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Home\Painel.g.cshtml.cs
 C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Categoria\Index.g.cshtml.cs
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Categoria\Cadastrar.g.cshtml.cs
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Categoria\Atualizar.g.cshtml.cs
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Colaborador\Index.g.cshtml.cs
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Colaborador\Cadastrar.g.cshtml.cs
+C:\Projetos Pessoais\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Colaborador\Atualizar.g.cshtml.cs
