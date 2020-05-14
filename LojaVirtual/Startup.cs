@@ -13,6 +13,7 @@ using LojaVirtual.Libraries.Login;
 using System.Net.Mail;
 using System.Net;
 using LojaVirtual.Libraries.Email;
+using LojaVirtual.Libraries.Middleware;
 
 namespace LojaVirtual
 {
@@ -99,6 +100,9 @@ namespace LojaVirtual
 
             //Configuração da sessão
             app.UseSession();
+
+            //Importação do middleware para validação do token
+            app.UseMiddleware<ValidateAntiFogeryTokenMiddleware>();
 
             app.UseMvc(routes =>
             {

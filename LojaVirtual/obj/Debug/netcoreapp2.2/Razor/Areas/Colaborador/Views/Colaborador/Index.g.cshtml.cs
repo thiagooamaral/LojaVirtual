@@ -28,8 +28,13 @@ using X.PagedList;
 
 #line default
 #line hidden
+#line 5 "C:\Projetos Pessoais\LojaVirtual\LojaVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
+using LojaVirtual.Models.Constants;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b27dd74f3088cc44ab820ae26eedf0e9552df363", @"/Areas/Colaborador/Views/Colaborador/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"90799275c998573c5584c7fde9507bc8004803f8", @"/Areas/Colaborador/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6dea797114cbc17efc51fd94700ecd7a2104983d", @"/Areas/Colaborador/Views/_ViewImports.cshtml")]
     public class Areas_Colaborador_Views_Colaborador_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<X.PagedList.IPagedList<LojaVirtual.Models.Colaborador>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Cadastrar", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -71,7 +76,7 @@ using X.PagedList;
             WriteLiteral("\r\n<h1>Colaborador</h1>\r\n\r\n");
             EndContext();
             BeginContext(130, 63, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b27dd74f3088cc44ab820ae26eedf0e9552df3636063", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b27dd74f3088cc44ab820ae26eedf0e9552df3636231", async() => {
                 BeginContext(180, 9, true);
                 WriteLiteral("Cadastrar");
                 EndContext();
@@ -199,7 +204,7 @@ using X.PagedList;
             WriteLiteral("</td>\r\n                    <td>\r\n                        ");
             EndContext();
             BeginContext(1166, 99, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b27dd74f3088cc44ab820ae26eedf0e9552df36311906", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b27dd74f3088cc44ab820ae26eedf0e9552df36312074", async() => {
                 BeginContext(1250, 11, true);
                 WriteLiteral("Gerar senha");
                 EndContext();
@@ -235,7 +240,7 @@ using X.PagedList;
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(1291, 96, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b27dd74f3088cc44ab820ae26eedf0e9552df36314384", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b27dd74f3088cc44ab820ae26eedf0e9552df36314552", async() => {
                 BeginContext(1374, 9, true);
                 WriteLiteral("Atualizar");
                 EndContext();
@@ -271,7 +276,7 @@ using X.PagedList;
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(1413, 89, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b27dd74f3088cc44ab820ae26eedf0e9552df36316858", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b27dd74f3088cc44ab820ae26eedf0e9552df36317026", async() => {
                 BeginContext(1491, 7, true);
                 WriteLiteral("Excluir");
                 EndContext();
