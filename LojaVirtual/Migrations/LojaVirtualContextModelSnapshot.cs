@@ -27,9 +27,11 @@ namespace LojaVirtual.Migrations
 
                     b.Property<int?>("CategoriaPaiId");
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Nome")
+                        .IsRequired();
 
-                    b.Property<string>("Slug");
+                    b.Property<string>("Slug")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -61,6 +63,8 @@ namespace LojaVirtual.Migrations
                     b.Property<string>("Sexo")
                         .IsRequired();
 
+                    b.Property<string>("Situacao");
+
                     b.Property<string>("Telefone")
                         .IsRequired();
 
@@ -75,17 +79,37 @@ namespace LojaVirtual.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Nome")
+                        .IsRequired();
 
-                    b.Property<string>("Senha");
+                    b.Property<string>("Senha")
+                        .IsRequired();
 
                     b.Property<string>("Tipo");
 
                     b.HasKey("Id");
 
                     b.ToTable("Colaboradores");
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.Imagem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Caminho");
+
+                    b.Property<int>("ProdutoId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("Imagens");
                 });
 
             modelBuilder.Entity("LojaVirtual.Models.NewsletterEmail", b =>
@@ -102,11 +126,58 @@ namespace LojaVirtual.Migrations
                     b.ToTable("NewsletterEmails");
                 });
 
+            modelBuilder.Entity("LojaVirtual.Models.Produto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Altura");
+
+                    b.Property<int>("CategoriaId");
+
+                    b.Property<int>("Comprimento");
+
+                    b.Property<string>("Descricao");
+
+                    b.Property<int>("Largura");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<double>("Peso");
+
+                    b.Property<int>("Quantidade");
+
+                    b.Property<decimal>("Valor");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId");
+
+                    b.ToTable("Produtos");
+                });
+
             modelBuilder.Entity("LojaVirtual.Models.Categoria", b =>
                 {
                     b.HasOne("LojaVirtual.Models.Categoria", "CategoriaPai")
                         .WithMany()
                         .HasForeignKey("CategoriaPaiId");
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.Imagem", b =>
+                {
+                    b.HasOne("LojaVirtual.Models.Produto", "Produto")
+                        .WithMany("Imagens")
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.Produto", b =>
+                {
+                    b.HasOne("LojaVirtual.Models.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

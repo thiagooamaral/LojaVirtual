@@ -1,18 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using LojaVirtual.Database;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
+using Microsoft.Extensions.Configuration;
+using X.PagedList;
 
 namespace LojaVirtual.Repositories
 {
     public class ClienteRepository : IClienteRepository
     {
         private LojaVirtualContext _banco;
+        private IConfiguration _configuration;
 
-        public ClienteRepository(LojaVirtualContext banco)
+        public ClienteRepository(LojaVirtualContext banco, IConfiguration configuration)
         {
             _banco = banco;
+            _configuration = configuration;
         }
 
         public void Atualizar(Cliente cliente)
@@ -45,9 +48,20 @@ namespace LojaVirtual.Repositories
             return _banco.Clientes.Find(Id);
         }
 
-        public IEnumerable<Cliente> ObterTodosClientes()
+        public IPagedList<Cliente> ObterTodosClientes(int? pagina, string pesquisa)
         {
-            return _banco.Clientes.ToList();
+            int RegistroPorPagina = _configuration.GetValue<int>("RegistroPorPagina");
+            int NumeroPagina = pagina ?? 1;
+
+            //AsQueryable: é o tipo de retorno após usar o where logo abaixo, já fiz a conversão aqui para não dar erro
+            var bancoCliente = _banco.Clientes.AsQueryable(); 
+
+            if (!string.IsNullOrEmpty(pesquisa))
+            {
+                bancoCliente = bancoCliente.Where(a => a.Nome.Contains(pesquisa.Trim()) || a.Email.Contains(pesquisa.Trim()));
+            }
+
+            return bancoCliente.ToPagedList<Cliente>(NumeroPagina, RegistroPorPagina);
         }
     }
 }
